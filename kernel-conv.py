@@ -56,6 +56,8 @@ prewitt_y = np.array([[1,0,-1],[1,0,-1],[1,0,-1]])
 sobel_x = np.array([[1,2,1],[0,0,0],[-1,-2,-1]])
 sobel_y = np.array([[1,0,-1],[2,0,-2],[1,0,-1]])
 
+laplacian = np.array([[0,1,0],[1,-4,1],[0,1,0]])
+
 image = np.array([[3,4,8,15,25,45,50,52],
                  [3,4,8,15,25,45,50,52],
                  [3,4,8,15,25,45,50,52],
@@ -64,11 +66,19 @@ image = np.array([[3,4,8,15,25,45,50,52],
                  [3,4,8,15,25,45,50,52],
                  [3,4,8,15,25,45,50,52],
                  [3,4,8,15,25,45,50,52]])
+image = np.array([[1,2,3,4,5],
+                  [1,2,3,4,5],
+                  [1,2,3,4,5],
+                  [1,2,3,4,5],
+                  [1,2,3,4,5],])
 
-padding = "constant"
 
-h_x = prewitt_x
-h_y = prewitt_y
+
+
+padding = "zero"
+
+h_x = laplacian
+h_y = laplacian
 
 print("padding used:-" + padding)
 
@@ -84,6 +94,6 @@ print("g = sqrt( g_x^2 + g_y^2)")
 print(np.around((np.sqrt(np.square(g_x)+np.square(g_y))),decimals=3))
 print()
 print("theta = tan-1(g_y/g_x)")
-print(np.around(np.arctan2(g_y,g_x)*180/np.pi,decimals=3))
+print(np.arctan(g_y/g_x)*180/np.pi)
 
 
